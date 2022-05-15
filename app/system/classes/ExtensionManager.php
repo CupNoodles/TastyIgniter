@@ -394,6 +394,11 @@ class ExtensionManager
             return;
         }
 
+        // sort booting of extensions if boot_priority exists
+        usort($this->extensions, function($a, $b){
+                return ($a->boot_priority ?? 0) > ($b->boot_priority ?? 0);
+        });
+
         foreach ($this->extensions as $extension) {
             $this->bootExtension($extension);
         }
