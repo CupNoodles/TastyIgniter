@@ -409,8 +409,8 @@ class ExtensionManager
             return;
         }
 
-        foreach ($this->extensions as $name => $extension) {
-            $this->bootExtension($extension);
+        foreach ($this->listByDependencies() as $code) {
+            $this->bootExtension($this->extensions[$code]);
         }
 
         $this->booted = TRUE;
